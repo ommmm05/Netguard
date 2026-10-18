@@ -1,0 +1,33 @@
+# NetGuard — Python dependencies (Phases 1–3)
+#
+# Phase 1: Capture + Visibility + API
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+sqlalchemy>=2.0.36
+pydantic>=2.9.0
+pydantic-settings>=2.6.0
+python-multipart>=0.0.12
+scapy>=2.5.0
+python-nmap>=0.7.1
+netifaces>=0.11.0; platform_system != "Windows"
+
+# Phase 2: ML Detection (CICIDS2017 pipeline)
+numpy>=1.26.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+joblib>=1.4.0
+xgboost>=2.0.0
+
+# Phase 3: Forensics & Incident Intelligence
+shap>=0.45.0
+reportlab>=4.2.0
+httpx>=0.27.0
+
+# Optional: OpenAI for LLM-assisted reports and analyst chat
+openai>=1.55.0
+
+# Optional: deep L7 dissection via Wireshark tshark (not core pipeline)
+pyshark>=0.6.0
+
+# Dev / Testing
+pytest>=8.3.0

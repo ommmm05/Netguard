@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NetGuard — Final Year Project Poster</title>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 210mm; height: 297mm;
+    font-family: 'Segoe UI', 'Arial', 'Helvetica Neue', sans-serif;
+    color: #1a1a1a; background: #fff;
+    font-size: 7.2pt; line-height: 1.32;
+    overflow: hidden;
+  }
+  body { display: flex; flex-direction: column; }
+
+  /* ── HEADER ─────────────────────────────────────────── */
+  .header {
+    background: linear-gradient(135deg, #0c2d5e 0%, #163d78 100%);
+    color: #fff; display: flex; align-items: center;
+    padding: 5mm 5mm 4mm 5mm; gap: 4mm;
+    border-bottom: 1.2pt solid #e8b931;
+    flex-shrink: 0;
+  }
+  .logo-box {
+    width: 20mm; min-width: 20mm; height: 20mm;
+    background: #fff; border-radius: 2.5mm;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #0c2d5e; font-weight: 900;
+    text-align: center; line-height: 1.1;
+    border: 0.6pt solid #ccc;
+  }
+  .logo-box .vit-text { font-size: 14pt; letter-spacing: 0.5pt; }
+  .logo-box .sub-text { font-size: 4.2pt; color: #444; margin-top: 0.5mm; font-weight: 600; }
+  .header-center { flex: 1; }
+  .project-title {
+    font-size: 18pt; font-weight: 900;
+    letter-spacing: 2.5pt; margin-bottom: 1mm;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .project-subtitle {
+    font-size: 7.5pt; font-weight: 400;
+    opacity: 0.92; margin-bottom: 2mm;
+    font-style: italic;
+  }
+  .student-info { font-size: 6.2pt; line-height: 1.5; opacity: 0.88; }
+  .student-info strong { font-weight: 700; }
+
+  /* ── COLUMNS ────────────────────────────────────────── */
+  .columns {
+    flex: 1; display: flex; gap: 0;
+    padding: 3mm 5mm 2mm 5mm;
+    overflow: hidden;
+  }
+  .col {
+    flex: 1; padding: 0 2.5mm;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .col:not(:last-child) {
+    border-right: 0.5pt solid #c0c0c0;
+  }
+
+  /* ── SECTIONS ───────────────────────────────────────── */
+  .section { margin-bottom: 2mm; }
+  .section-title {
+    color: #0c2d5e; font-weight: 800;
+    font-size: 7.8pt; margin-bottom: 0.8mm;
+    border-bottom: 0.6pt solid #d0d0d0;
+    padding-bottom: 0.5mm;
+  }
+  .section p { text-align: justify; margin-bottom: 0.8mm; }
+  .section ul {
+    padding-left: 3mm; margin-bottom: 0.8mm;
+  }
+  .section li { margin-bottom: 0.3mm; }
+  .section b { color: #222; }
+
+  /* ── TABLES ─────────────────────────────────────────── */
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 1mm 0; font-size: 6.3pt;
+  }
+  table th {
+    background: #0c2d5e; color: #fff;
+    padding: 1mm 1.2mm; text-align: left;
+    font-weight: 700; font-size: 6.3pt;
+  }
+  table td {
+    border: 0.4pt solid #ccc;
+    padding: 0.8mm 1.2mm; vertical-align: top;
+  }
+  table tr:nth-child(even) td { background: #f5f7fa; }
+  table.compact td, table.compact th { padding: 0.5mm 1mm; }
+
+  /* ── ARCHITECTURE DIAGRAM ───────────────────────────── */
+  .arch-diagram {
+    background: #f8fafc; border: 0.5pt solid #ccc;
+    border-radius: 1.5mm; padding: 2mm;
+    margin: 1.2mm 0; font-size: 5.8pt;
+    text-align: center;
+  }
+  .arch-diagram .arch-row {
+    display: flex; justify-content: center;
+    gap: 2mm; margin: 0.8mm 0; align-items: stretch;
+  }
+  .arch-box {
+    background: #e8f0fe; border: 0.5pt solid #7ba4d4;
+    border-radius: 1.2mm; padding: 1.2mm 2mm;
+    font-size: 5.6pt; font-weight: 600; color: #0c2d5e;
+    text-align: center; min-width: 18mm;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arch-box.highlight {
+    background: #0c2d5e; color: #fff;
+    border-color: #0c2d5e;
+  }
+  .arch-box.db {
+    background: #fef3c7; border-color: #d4a017;
+    color: #92400e;
+  }
+  .arch-box.frontend {
+    background: #dcfce7; border-color: #4ade80;
+    color: #166534;
+  }
+  .arch-box.ml {
+    background: #fce7f3; border-color: #f472b6;
+    color: #9d174d;
+  }
+  .arch-arrow {
+    text-align: center; font-size: 8pt;
+    color: #555; line-height: 1;
+    margin: 0.3mm 0;
+  }
+
+  /* ── METHODOLOGY FLOW ───────────────────────────────── */
+  .method-flow {
+    display: flex; align-items: center;
+    justify-content: center; gap: 0.8mm;
+    margin: 1.2mm 0; flex-wrap: wrap;
+  }
+  .method-step {
+    background: #e0edff; border: 0.4pt solid #8cb0e0;
+    border-radius: 1mm; padding: 0.8mm 1.5mm;
+    font-size: 5.8pt; font-weight: 600; color: #0c2d5e;
+    text-align: center; white-space: nowrap;
+  }
+  .method-arrow { font-size: 7pt; color: #555; }
+
+  /* ── QR PLACEHOLDER ─────────────────────────────────── */
+  .qr-placeholder {
+    width: 16mm; height: 16mm;
+    border: 0.5pt dashed #999; border-radius: 1mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5pt; color: #888; text-align: center;
+    margin: 1mm auto;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────── */
+  .footer {
+    background: #0c2d5e; color: #fff;
+    text-align: center; padding: 1.8mm 5mm;
+    font-size: 7.5pt; font-weight: 700;
+    letter-spacing: 1pt; flex-shrink: 0;
+  }
+
+  @media print {
+    html, body { width: 210mm; height: 297mm; }
+    .footer { position: fixed; bottom: 0; left: 0; right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ HEADER ══════════════════════ -->
+<div class="header">
+  <div class="logo-box">
+    <div class="vit-text">VIT</div>
+    <div class="sub-text">Vidyalankar<br>Institute of<br>Technology</div>
+  </div>
+  <div class="header-center">
+    <div class="project-title">NETGUARD</div>
+    <div class="project-subtitle">AI-Driven Network Visibility, Threat Detection &amp; Forensics Platform</div>
+    <div class="student-info">
+      <strong>Made by —</strong>
+      Om Khedkar (23101B0011) &nbsp;|&nbsp; Sujal Jangam (23101C0011) &nbsp;|&nbsp; Atharva Gandhe (23101C0009) &nbsp;|&nbsp; Atherva Hande (23101C0066)
+      <br>
+      <strong>~ Guided by</strong> Vinita Bhandiwad
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ THREE COLUMNS ══════════════════ -->
+<div class="columns">
+
+<!-- ─────────── COLUMN 1 ─────────── -->
+<div class="col">
+
+  <div class="section">
+    <div class="section-title">1.1 Abstract</div>
+    <p>NetGuard is an AI-driven cybersecurity research prototype that provides <b>passive network monitoring</b>, <b>machine-learning-based threat detection</b>, and <b>forensic incident intelligence</b> through a unified SOC-style dashboard. The system captures live network traffic via TShark/Scapy, reconstructs bidirectional 5-tuple flows, extracts 20-dimensional CICIDS2017-aligned feature vectors, and classifies threats using a <b>Random Forest + XGBoost + Isolation Forest</b> ensemble. Forensic analysis is powered by SHAP explainability, MITRE ATT&amp;CK mapping, incident correlation, and LLM-assisted report generation. The platform is built with <b>FastAPI</b> (Python) and <b>React + Vite + Tailwind CSS</b> (TypeScript), persisting all state in <b>SQLite</b>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.2 Introduction</div>
+    <p>Modern network environments face increasingly sophisticated cyber threats including DoS attacks, port scans, brute-force intrusions, and anomalous exfiltration patterns. Traditional signature-based IDS tools often fail against zero-day and polymorphic threats. NetGuard addresses this gap by combining <b>passive packet capture</b> with <b>ensemble machine learning</b> and <b>forensic intelligence</b> in a three-phase modular architecture, enabling security analysts to monitor, detect, and investigate network threats from a single unified interface.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.3 Problem Statement</div>
+    <p>Existing network security tools rely heavily on signature-based detection, lack real-time ML-driven threat classification, and do not provide integrated forensic investigation capabilities. There is a need for a <b>unified platform</b> that passively monitors network traffic, automatically classifies threats using ML, and provides explainable forensic intelligence with actionable remediation guidance — all without active scanning or packet injection.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.4 Objectives</div>
+    <ul>
+      <li>Implement <b>passive network capture</b> via TShark and Scapy (no active scanning or injection).</li>
+      <li>Reconstruct <b>bidirectional 5-tuple flows</b> and extract 20-dim CICIDS2017 feature vectors.</li>
+      <li>Train and deploy a <b>3-model ML ensemble</b> (Random Forest, XGBoost, Isolation Forest) for threat classification.</li>
+      <li>Provide <b>SHAP-based explainability</b> and MITRE ATT&amp;CK mapping for forensic analysis.</li>
+      <li>Build a <b>real-time SOC dashboard</b> with React for unified monitoring and investigation.</li>
+      <li>Support <b>PCAP upload</b>, <b>live capture</b>, and <b>offline replay</b> modes.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.5 Existing System / Gap</div>
+    <table>
+      <tr><th>Feature</th><th>Traditional IDS</th><th>NetGuard</th></tr>
+      <tr><td>Detection Method</td><td>Signature-based</td><td>ML Ensemble (RF + XGB + IF)</td></tr>
+      <tr><td>Explainability</td><td>None / limited</td><td>SHAP TreeExplainer</td></tr>
+      <tr><td>Forensic Intelligence</td><td>Separate tools</td><td>Integrated (timeline, IOC, MITRE)</td></tr>
+      <tr><td>Network Visibility</td><td>Basic logging</td><td>Full flow, DNS, ARP, TLS, HTTP, DHCP</td></tr>
+      <tr><td>Unified Dashboard</td><td>Multiple consoles</td><td>Single SOC-style React UI</td></tr>
+      <tr><td>Active Scanning</td><td>Often required</td><td>Fully passive only</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.12 Conclusion</div>
+    <p>NetGuard successfully demonstrates an end-to-end AI-driven network security platform that integrates <b>passive packet capture</b>, <b>ML-based threat detection</b>, and <b>forensic incident intelligence</b> into a unified SOC dashboard. The three-phase modular architecture (Visibility → Detection → Forensics) enables complete network threat lifecycle management. The platform's passive-only design, SHAP explainability, MITRE ATT&amp;CK mapping, and LLM-assisted reporting make it a practical research prototype for academic and small-scale SOC environments.</p>
+  </div>
+
+</div><!-- end col 1 -->
+
+<!-- ─────────── COLUMN 2 ─────────── -->
+<div class="col">
+
+  <div class="section">
+    <div class="section-title">1.6 Methodology</div>
+    <p>NetGuard follows a <b>three-phase pipeline</b> architecture:</p>
+    <div class="method-flow">
+      <span class="method-step">PCAP / Live<br>Capture</span>
+      <span class="method-arrow">→</span>
+      <span class="method-step">Packet<br>Parsing</span>
+      <span class="method-arrow">→</span>
+      <span class="method-step">Flow<br>Tracking</span>
+      <span class="method-arrow">→</span>
+      <span class="method-step">Feature<br>Extraction</span>
+      <span class="method-arrow">→</span>
+      <span class="method-step">ML Ensemble<br>Detection</span>
+      <span class="method-arrow">→</span>
+      <span class="method-step">Forensic<br>Intelligence</span>
+    </div>
+    <ul>
+      <li><b>Phase 1 — Visibility:</b> Passive capture → Scapy decoding → flow reconstruction → host/DNS/ARP/TLS/HTTP/DHCP metadata → heuristic pattern detection.</li>
+      <li><b>Phase 2 — Detection:</b> 20-dim CICIDS2017 feature extraction → RF + XGBoost + Isolation Forest ensemble → severity mapping → alert generation.</li>
+      <li><b>Phase 3 — Forensics:</b> SHAP explanation → incident correlation → IOC extraction → MITRE ATT&amp;CK mapping → LLM narrative → PDF/CSV export.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.7 Proposed System / Architecture</div>
+    <div class="arch-diagram">
+      <!-- Layer 1: User / Frontend -->
+      <div class="arch-row">
+        <div class="arch-box frontend" style="min-width: 52mm;">🖥️ React + Vite + Tailwind CSS Dashboard<br><span style="font-size:5pt; font-weight:400;">(Overview | Visibility | Detection | Alerts | Forensics | Assistant)</span></div>
+      </div>
+      <div class="arch-arrow">▼ REST API + SSE (Server-Sent Events) ▲</div>
+      <!-- Layer 2: Backend -->
+      <div class="arch-row">
+        <div class="arch-box highlight" style="min-width: 52mm;">⚙️ FastAPI Backend (Uvicorn ASGI)<br><span style="font-size:5pt; font-weight:400;">Bearer Token Auth | CORS | Modular Routers</span></div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <!-- Layer 3: Processing Modules -->
+      <div class="arch-row">
+        <div class="arch-box">📡 Capture<br><span style="font-size:5pt; font-weight:400;">TShark + Scapy<br>PCAP Ingest<br>Live Sniffer</span></div>
+        <div class="arch-box">🔍 Visibility<br><span style="font-size:5pt; font-weight:400;">Flow Tracker<br>Heuristics<br>TLS SNI</span></div>
+        <div class="arch-box ml">🤖 Detection<br><span style="font-size:5pt; font-weight:400;">RF + XGBoost<br>+ IsoForest<br>20-dim Vector</span></div>
+        <div class="arch-box">🔬 Forensics<br><span style="font-size:5pt; font-weight:400;">SHAP, MITRE<br>Timeline, IOC<br>LLM Reports</span></div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <!-- Layer 4: Data -->
+      <div class="arch-row">
+        <div class="arch-box db">🗄️ SQLite (11 tables)<br><span style="font-size:5pt; font-weight:400;">hosts | flows | dns_stats | arp_entries | tls_meta | http_meta | dhcp_meta | ml_alerts | forensic_reports | …</span></div>
+        <div class="arch-box db" style="min-width: 14mm;">📁 ML Models<br><span style="font-size:5pt; font-weight:400;">.joblib</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.8 Implementation</div>
+    <table class="compact">
+      <tr><th>Layer</th><th>Technology</th></tr>
+      <tr><td>Frontend</td><td>React 19, TypeScript, Vite 7, Tailwind CSS 4, Recharts, Framer Motion</td></tr>
+      <tr><td>Backend</td><td>Python 3.10+, FastAPI, Uvicorn (ASGI), Pydantic</td></tr>
+      <tr><td>ML / AI</td><td>scikit-learn (RF, IsoForest), XGBoost, NumPy, Pandas, SHAP</td></tr>
+      <tr><td>Capture</td><td>TShark (Wireshark), Scapy, PyShark, Npcap/libpcap</td></tr>
+      <tr><td>Database</td><td>SQLite via SQLAlchemy 2.0 ORM (11 tables)</td></tr>
+      <tr><td>Reports</td><td>ReportLab (PDF), OpenAI API (optional LLM narratives)</td></tr>
+      <tr><td>Security</td><td>Bearer Token Auth, CORS, passive-only capture (no injection)</td></tr>
+      <tr><td>Streaming</td><td>Server-Sent Events (SSE) for live packet telemetry</td></tr>
+      <tr><td>Testing</td><td>Pytest (unit + integration tests)</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.13 Future Scope</div>
+    <ul>
+      <li><b>Deep Learning Models:</b> Integrate LSTM/Transformer-based sequence models for temporal attack pattern detection.</li>
+      <li><b>Distributed Deployment:</b> Containerized cloud-native deployment for multi-sensor environments.</li>
+      <li><b>Multi-PCAP Correlation:</b> Cross-session forensic analysis across multiple capture files.</li>
+      <li><b>Enhanced LLM Integration:</b> Fine-tuned security-domain LLM for richer analyst chat and automated playbook generation.</li>
+      <li><b>Real-Time Alerting:</b> Webhook/email notification integration for critical threat alerts.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.15 QR Code</div>
+    <div class="qr-placeholder">QR code<br>URL to be<br>added</div>
+    <p style="text-align:center; font-size: 5.5pt; color: #888; margin-top: 0.5mm;">Scan for project repository</p>
+  </div>
+
+</div><!-- end col 2 -->
+
+<!-- ─────────── COLUMN 3 ─────────── -->
+<div class="col">
+
+  <div class="section">
+    <div class="section-title">1.9 Algorithms</div>
+    <p>NetGuard uses a <b>3-model ensemble</b> trained on CICIDS2017-aligned features. Classification: Benign, DoS, PortScan, BruteForce. Anomaly detection via Isolation Forest sigmoid scoring.</p>
+    <table>
+      <tr><th>Algorithm</th><th>Input</th><th>Processing</th><th>Output</th></tr>
+      <tr>
+        <td><b>Random Forest</b></td>
+        <td>20-dim feature vector</td>
+        <td>200 trees, max depth 20, balanced class weights</td>
+        <td>Class probabilities + prediction</td>
+      </tr>
+      <tr>
+        <td><b>XGBoost</b></td>
+        <td>20-dim feature vector</td>
+        <td>200 estimators, depth 6, lr=0.1, mlogloss</td>
+        <td>Class probabilities + prediction</td>
+      </tr>
+      <tr>
+        <td><b>Isolation Forest</b></td>
+        <td>20-dim feature vector</td>
+        <td>200 estimators, contamination=0.1, sigmoid transform</td>
+        <td>Anomaly score (0–1)</td>
+      </tr>
+      <tr>
+        <td><b>Ensemble Decision</b></td>
+        <td>RF + XGB probabilities, IF score</td>
+        <td>Average confidence; majority vote; IF anomaly threshold &gt;0.6</td>
+        <td>Alert (type, severity, confidence)</td>
+      </tr>
+      <tr>
+        <td><b>SHAP TreeExplainer</b></td>
+        <td>Alert feature vector + RF model</td>
+        <td>Shapley value computation for each feature</td>
+        <td>Top-12 feature contributions (waterfall)</td>
+      </tr>
+      <tr>
+        <td><b>Heuristic Detector</b></td>
+        <td>Flow metadata (ports, bytes, duration)</td>
+        <td>Pattern matching: C2 ports, RDP external, SMB, port scan</td>
+        <td>Threat label + severity flag</td>
+      </tr>
+    </table>
+    <p style="margin-top: 1mm;"><b>Feature Vector (20-dim):</b> dst_port, src_port, flow_duration, tot_fwd_pkts, tot_bwd_pkts, totlen_fwd/bwd_pkts, fwd/bwd_pkt_len (max, min, mean), flow_byts/pkts_s, pkt_len (mean, std), syn/ack_flag_count, down_up_ratio.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.10 Results</div>
+    <ul>
+      <li>Three-phase pipeline (<b>Visibility → Detection → Forensics</b>) implemented end-to-end with full API coverage (30+ REST endpoints).</li>
+      <li>ML ensemble (RF + XGBoost + IsoForest) trained on <b>CICIDS2017</b> dataset with real evaluation metrics (accuracy, precision, recall, F1) computed via stratified 80/20 train-test split.</li>
+      <li>Live capture via <b>TShark subprocess</b> with real-time SSE packet streaming and bidirectional flow tracking (5-tuple, 20-dim CICIDS feature extraction).</li>
+      <li>SHAP TreeExplainer successfully generates per-alert feature contribution waterfall charts.</li>
+      <li><b>MITRE ATT&amp;CK mapping</b> covers DoS (T1498/T1499), PortScan (T1046/T1018), BruteForce (T1110/T1078), and Anomaly (T1071/T1048).</li>
+      <li>Forensic PDF reports generated via ReportLab with alert details, SHAP, timeline, and remediation steps.</li>
+      <li>Pytest test suite validates: flow key bidirectionality, TShark EK JSON parsing, flow tracker aggregation, 20-dim vector alignment, detection ensemble adapter, capture manager lifecycle, API endpoint shapes, and bearer token auth.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.11 Discussion</div>
+    <p><b>Passive-Only Design:</b> NetGuard does not scan, inject, spoof, MITM, or decrypt TLS — ensuring legal and ethical compliance while maintaining visibility through metadata analysis (SNI, DNS, ARP, HTTP Host headers).</p>
+    <p><b>Ensemble Advantage:</b> Combining supervised classifiers (RF, XGBoost) with an unsupervised anomaly detector (Isolation Forest) provides robust detection: supervised models handle known attack categories while IF catches novel anomalies not represented in training data.</p>
+    <p><b>Explainable AI:</b> SHAP TreeExplainer grounds each alert in specific flow features (e.g., flow_byts_s, syn_flag_count), enabling analysts to verify whether a detection is based on meaningful traffic characteristics rather than artifacts.</p>
+    <p><b>Modular Architecture:</b> Each phase (capture, visibility, detection, forensics) is a self-contained Python package with clean imports, enabling independent development, testing, and extension.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1.14 References</div>
+    <ul style="font-size: 6pt;">
+      <li>[1] I. Sharafaldin, A. H. Lashkari, A. A. Ghorbani, "Toward Generating a New Intrusion Detection Dataset and Intrusion Traffic Characterization," <i>ICISSP</i>, 2018. (CICIDS2017)</li>
+      <li>[2] FastAPI Documentation — <i>https://fastapi.tiangolo.com</i></li>
+      <li>[3] scikit-learn Documentation — <i>https://scikit-learn.org</i></li>
+      <li>[4] XGBoost Documentation — <i>https://xgboost.readthedocs.io</i></li>
+      <li>[5] SHAP (SHapley Additive exPlanations) — <i>https://shap.readthedocs.io</i></li>
+      <li>[6] Wireshark / TShark — <i>https://www.wireshark.org</i></li>
+      <li>[7] Scapy — <i>https://scapy.net</i></li>
+      <li>[8] MITRE ATT&amp;CK Framework — <i>https://attack.mitre.org</i></li>
+      <li>[9] React Documentation — <i>https://react.dev</i></li>
+      <li>[10] OWASP Foundation — <i>https://owasp.org</i></li>
+    </ul>
+  </div>
+
+</div><!-- end col 3 -->
+</div><!-- end columns -->
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<div class="footer">
+  Department of Information Technology &nbsp;&nbsp;&nbsp; 2026–27
+</div>
+
+</body>
+</html>
